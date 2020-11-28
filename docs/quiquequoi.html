@@ -1,22 +1,14 @@
-
-//Set no caching
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
-header("Cache-Control: no-store, no-cache, must-revalidate"); 
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
 <!DOCTYPE html>
 <html lang="fr">
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>QUI</title>
+    <title>QUIQUEQUOI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -49,19 +41,19 @@ header("Pragma: no-cache");
       }
 
     </style>
-    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="container">
       <center><h2 class="form-signin-heading">Le QUI-QUE-QUOI by Rod</h2></center>
-      <form id="joueForm" class="form-signin">
-      <div id="formu" > 
-        Jeu <input id="idjeu" name="idjeu" type="text" class="input-block-level" placeholder="Id Partie" required pattern="[0-9]*[.]*">
+      <div id="divSelectGame"> 
+      <form id="formSelectGame" class="form-signin">
+        Jeu <input id="idGame" name="idGame" type="text" class="input-block-level" placeholder="Id Partie" required pattern="[0-9]*[.]*">
         <br>
-        <button class="btn btn-large btn-primary" type="button" id="connectButton">Valider</button>
-      </div>
+        <button class="btn btn-large btn-primary" type="button" id="connectButton"onclick="submitSelectGame()">Valider</button>
+      </form>
       <br><p><b>But du jeu :</b><br/> Vous devez deviner qui vous êtes ? ou qu'est-ce que vous êtes ?<br/><br/>
         Les autres joueurs connaissent votre mot à deviner, et vous connaissez le leur.<br/><br/>
         A votre tour, vous posez une question à quelqu'un d'une autre équipe qui ne peut répondre que par <b>OUI</b> ou <b>NON</b>.<br/><br/>
@@ -70,11 +62,11 @@ header("Pragma: no-cache");
 	<br/>A la fin de votre tour, vous pouvez proposer une réponse pour votre mot mystère.<br>
 	Une partie se termine quand tout le monde a trouvé son mot :-).<br/>         
         </p>
-      
+      </div> 
+      <div id="divCurrentPlayer" style="display: none;">  
         <center><h2 class="form-signin-heading" id="player"></h2></center>
         <div id="divCourant" style="display: none;">  
         <center>
-        <img id="imgplayer" src="">
         <br>
         <h3 class="form-signin-heading">Votre mot à découvrir : XXX</h3>
         <br>
@@ -129,6 +121,27 @@ header("Pragma: no-cache");
     
 </body>
 <script>
+var currentPlayer=1;
+var idGame=0;
+var mots=new Array(5);
+for (var i = 0; i < 5; i++)
+{
+ mots[i] = new Array(5);
+}
+//On affecte une valeur de la même façon qu'on l'affiche
+mots[0][0] = "Paul";
+mots[1][0] = "Pierrel";
+
+function submitSelectGame(){
+  idGame=$("#idGame").text; 
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(selectPlayer);
+  } else { 
+    alert("Geolocation is not supported by this browser.");
+  }  
+}
+
+
 $("#connectButton").click(
 	function(){
     $("#formu").hide();
@@ -159,49 +172,15 @@ $("#connectButton").click(
       $("#div4").show();
     }
 
-    $("#joueForm").attr("method", "post");
-    $("#joueForm").attr("action", "joue.php5");
-    $("#joueForm").submit();
-
 
   }  
 );
 
-pointeur=1;
-function changerImage(){
-	$("#imgplayer").attr('src','img/'+ $("#joueur").val()+'/'+pointeur+'.jpg');  
-	$("#img1").attr('src','img/1/'+ pointeur+'.jpg'); 
-	$("#img2").attr('src','img/2/'+ pointeur+'.jpg'); 
-	$("#img3").attr('src','img/3/'+ pointeur+'.jpg'); 
-	$("#img4").attr('src','img/4/'+ pointeur+'.jpg'); 
-	if(pointeur < 5){
-	pointeur++;
-	}
-	else{
-	 pointeur = 1;
-	}
-}
 
-window.setInterval("changerImage()", 20000);
- 
-// Charge la fonction
-window.onload = function(){
-  changerImage();
-}
-
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
+function selectPlayer(position) {
+  $("#player").text("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+  $("#formSelectGame").hide();
+  $("#divCurrentPlayer").show();
 }
 </script>
 </html>
