@@ -47,29 +47,12 @@
   <div class="container">
     <center>
     <br>
-    <a href="quiquequoi.html">Le quiquequoi</a>
+    <a href="docs/quiquequoi.html">Le quiquequoi</a>
     <br>
     <p>Click the button to get your coordinates.</p>
     <button onclick="getLocation()">Try It</button>
     <p id="demo"></p>
     </center>
   </div>
-<script>
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
-</script>
-
 </body>
 </html>
