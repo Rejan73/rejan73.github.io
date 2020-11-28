@@ -49,60 +49,61 @@
     <div class="container">
       <center><h2 class="form-signin-heading">Le QUI-QUE-QUOI by Rod</h2></center>
       <div id="divSelectGame"> 
-      <form id="formSelectGame" class="form-signin">
-        Jeu <input id="idGame" name="idGame" type="text" class="input-block-level" placeholder="Id Partie" required pattern="[0-9]*[.]*">
-        <br>
-        <button class="btn btn-large btn-primary" type="button" id="connectButton"onclick="submitSelectGame()">Valider</button>
-        <br><p><b>But du jeu :</b><br/> Vous devez deviner qui vous êtes ? ou qu'est-ce que vous êtes ?<br/><br/>
-        Les autres joueurs connaissent votre mot à deviner, et vous connaissez le leur.<br/><br/>
-        A votre tour, vous posez une question à quelqu'un d'une autre équipe qui ne peut répondre que par <b>OUI</b> ou <b>NON</b>.<br/><br/>
-        Tant que l'on vous répond <b>OUI</b>, vous pouvez poser une autre question à une autre personne.<br>
-        Si on vous répond <b>NON</b>, la main passe, c'est au suivant de poser sa question.<br>
-	<br/>A la fin de votre tour, vous pouvez proposer une réponse pour votre mot mystère.<br>
-	Une partie se termine quand tout le monde a trouvé son mot :-).<br/>         
-        </p>
-      </form>
+	      <form id="formSelectGame" class="form-signin">
+		Jeu <input id="idGame" name="idGame" type="text" class="input-block-level" placeholder="Id Partie" required pattern="[0-9]*[.]*">
+		<br>
+		<button class="btn btn-large btn-primary" type="button" id="connectButton"onclick="submitSelectGame()">Valider</button>
+		<br><p><b>But du jeu :</b><br/> Vous devez deviner qui vous êtes ? ou qu'est-ce que vous êtes ?<br/><br/>
+		Les autres joueurs connaissent votre mot à deviner, et vous connaissez le leur.<br/><br/>
+		A votre tour, vous posez une question à quelqu'un d'une autre équipe qui ne peut répondre que par <b>OUI</b> ou <b>NON</b>.<br/><br/>
+		Tant que l'on vous répond <b>OUI</b>, vous pouvez poser une autre question à une autre personne.<br>
+		Si on vous répond <b>NON</b>, la main passe, c'est au suivant de poser sa question.<br>
+		<br/>A la fin de votre tour, vous pouvez proposer une réponse pour votre mot mystère.<br>
+		Une partie se termine quand tout le monde a trouvé son mot :-).<br/>         
+		</p>
+	      </form>
       </div> 
-      <div id="divCurrentPlayer" style="display: none;">  
-        <center><h2 class="form-signin-heading" id="currentPlayer"></h2></center>
-        <div id="divCourant" style="display: none;">  
-        <center>
-        <br>
-        <h3 class="form-signin-heading">Votre mot à découvrir : XXX</h3>
-        <br>
-        </center> 
-      </div>
-      <div id="divPlayer1" style="display: none;">  
-        <center>
-        <br>
-        <h3 class="form-signin-heading" id="motPlayer1"></h3>
-        <br>
-        </center> 
-      </div>
-      <div id="divPlayer2"  style="display: none;"> 
-        <center>
-        <br>
-        <h3 class="form-signin-heading" id="motPlayer2"></h3>
-        <br>
-        </center> 
-      </div>
-      <div id="divPlayer3" style="display: none;"> 
-        <center>
-        <br>
-        <h3 class="form-signin-heading" id="motPlayer3"></h3>
-        <br>
-        </center> 
-      </div>
-      <div id="divPlayer4" style="display: none;"> 
-        <center>
-        <br>
-        <h3 class="form-signin-heading" id="motPlayer4"></h3>
-        <br>
-        </center> 
-      </div>
-      </center>
+      <form id="formSelectGame" class="form-signin">
+	      <div id="divCurrentPlayer" style="display: none;">  
+		<center><h2 class="form-signin-heading" id="currentPlayer"></h2></center>
+		<div id="divCourant" style="display: none;">  
+		<center>
+		<br>
+		<h3 class="form-signin-heading">Votre mot à découvrir : XXX</h3>
+		<br>
+		</center> 
+	      </div>
+	      <div id="divPlayer1" style="display: none;">  
+		<center>
+		<br>
+		<h3 class="form-signin-heading" id="motPlayer1"></h3>
+		<br>
+		</center> 
+	      </div>
+	      <div id="divPlayer2"  style="display: none;"> 
+		<center>
+		<br>
+		<h3 class="form-signin-heading" id="motPlayer2"></h3>
+		<br>
+		</center> 
+	      </div>
+	      <div id="divPlayer3" style="display: none;"> 
+		<center>
+		<br>
+		<h3 class="form-signin-heading" id="motPlayer3"></h3>
+		<br>
+		</center> 
+	      </div>
+	      <div id="divPlayer4" style="display: none;"> 
+		<center>
+		<br>
+		<h3 class="form-signin-heading" id="motPlayer4"></h3>
+		<br>
+		</center> 
+	      </div>
+      </form>
     </div> 
-    </form>
+
     <center><a href="quiquequoi.html">Cliquez ici pour une nouvelle partie ? </a></center>
     <!-- Le javascript
     ================================================== -->
@@ -124,6 +125,31 @@ mots[0][0] = "Paul";
 mots[1][0] = "Pierre";
 mots[2][0] = "Jacques";
 mots[3][0] = "Marcel";
+
+mots[0][1] = "Nala";
+mots[1][1] = "Pinocchio";
+mots[2][1] = "Bambi";
+mots[3][1] = "Woody";
+
+mots[0][2] = "Jack Sparrow";
+mots[1][2] = "Sergent Chef Chaudard";
+mots[2][2] = "Le Grinch";
+mots[3][2] = "Bellatrix Lestrange";
+
+mots[0][3] = "Coco Chanel";
+mots[1][3] = "Dany Boon";
+mots[2][3] = "Napoleon";
+mots[3][3] = "Charlemagne";
+
+mots[0][4] = "Un balai";
+mots[1][4] = "Une poubelle";
+mots[2][4] = "Une bougie";
+mots[3][4] = "Un ramasse poussière";
+
+mots[0][5] = "Un Parfum";
+mots[1][5] = "Une abeille";
+mots[2][5] = "Un Piano";
+mots[3][5] = "Une poupée";
 
 
 function submitSelectGame(){
@@ -177,10 +203,9 @@ function selectPlayer(position) {
     $("#currentPlayer").text("Vous êtes dans l'equipe de Noyelles");
     $("#divCurrentPlayer").show();
     $("#divPlayer1").show();
+    $("#divPlayer2").show();
     $("#divPlayer3").show();
-    $("#divPlayer4").show();
   }
-  
  
 }
 
