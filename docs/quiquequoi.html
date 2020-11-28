@@ -178,28 +178,28 @@ function selectPlayer(position) {
   $("#motPlayer3").text("Le mot de l'équipe de Lomme est :" + mots[2][$("#idGame").val()]);
   $("#motPlayer4").text("Le mot de l'équipe de Noyelles est :" + mots[3][$("#idGame").val()]);
   
-  if (deltaMin == deltaAvelin){
+  if (Math.equal(deltaMin, deltaAvelin)){
     $("#currentPlayer").text("Vous êtes dans l'equipe d'Avelin");
     $("#divCurrentPlayer").show();
     $("#divPlayer2").show();
     $("#divPlayer3").show();
     $("#divPlayer4").show();
   }
-  if (deltaMin == deltaEmmerin){
+  if (Math.equal(deltaMin , deltaEmmerin)){
     $("#currentPlayer").text("Vous êtes dans l'equipe d'Emmerin");
     $("#divCurrentPlayer").show();
     $("#divPlayer1").show();
     $("#divPlayer3").show();
     $("#divPlayer4").show();
   }
-  if (deltaMin == deltaLomme){
+  if (Math.equal(deltaMin , deltaLomme)){
     $("#currentPlayer").text("Vous êtes dans l'equipe de Lomme");
     $("#divCurrentPlayer").show();
     $("#divPlayer1").show();
     $("#divPlayer2").show();
     $("#divPlayer4").show();
   }
-  if (deltaMin == deltaNoyelles){
+  if (Math.equal(deltaMin ,deltaNoyelles)){
     $("#currentPlayer").text("Vous êtes dans l'equipe de Noyelles");
     $("#divCurrentPlayer").show();
     $("#divPlayer1").show();
