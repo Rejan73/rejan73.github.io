@@ -53,8 +53,7 @@
         Jeu <input id="idGame" name="idGame" type="text" class="input-block-level" placeholder="Id Partie" required pattern="[0-9]*[.]*">
         <br>
         <button class="btn btn-large btn-primary" type="button" id="connectButton"onclick="submitSelectGame()">Valider</button>
-      </form>
-      <br><p><b>But du jeu :</b><br/> Vous devez deviner qui vous êtes ? ou qu'est-ce que vous êtes ?<br/><br/>
+        <br><p><b>But du jeu :</b><br/> Vous devez deviner qui vous êtes ? ou qu'est-ce que vous êtes ?<br/><br/>
         Les autres joueurs connaissent votre mot à deviner, et vous connaissez le leur.<br/><br/>
         A votre tour, vous posez une question à quelqu'un d'une autre équipe qui ne peut répondre que par <b>OUI</b> ou <b>NON</b>.<br/><br/>
         Tant que l'on vous répond <b>OUI</b>, vous pouvez poser une autre question à une autre personne.<br>
@@ -62,9 +61,10 @@
 	<br/>A la fin de votre tour, vous pouvez proposer une réponse pour votre mot mystère.<br>
 	Une partie se termine quand tout le monde a trouvé son mot :-).<br/>         
         </p>
+      </form>
       </div> 
       <div id="divCurrentPlayer" style="display: none;">  
-        <center><h2 class="form-signin-heading" id="player"></h2></center>
+        <center><h2 class="form-signin-heading" id="currentPlayer"></h2></center>
         <div id="divCourant" style="display: none;">  
         <center>
         <br>
@@ -72,40 +72,31 @@
         <br>
         </center> 
       </div>
-
-        
-
-      
-      
-      <div id="div1" style="display: none;">  
+      <div id="divPlayer1" style="display: none;">  
         <center>
-        <img id="img1" src="img/1/1.jpg">
         <br>
-        <h3 class="form-signin-heading">Mot à découvrir par <?php echo $nomjoueur1 ?> : <?php echo $motjoueur1 ?></h3>
+        <h3 class="form-signin-heading" id="motPlayer1"></h3>
         <br>
         </center> 
       </div>
-      <div id="div2"  style="display: none;"> 
+      <div id="divPlayer2"  style="display: none;"> 
         <center>
-        <img id="img2" src="img/2/1.jpg">
         <br>
-        <h3 class="form-signin-heading">Mot à découvrir par <?php echo $nomjoueur2 ?>  : <?php echo $motjoueur2 ?></h3>
+        <h3 class="form-signin-heading" id="motPlayer2"></h3>
         <br>
         </center> 
       </div>
-      <div id="div3" style="display: none;"> 
+      <div id="divPlayer3" style="display: none;"> 
         <center>
-        <img id="img3" src="img/3/1.jpg">
         <br>
-        <h3 class="form-signin-heading">Mot à découvrir par <?php echo $nomjoueur3 ?>  : <?php echo $motjoueur3 ?></h3>
+        <h3 class="form-signin-heading" id="motPlayer3"></h3>
         <br>
         </center> 
       </div>
-      <div id="div4" style="display: none;"> 
+      <div id="divPlayer4" style="display: none;"> 
         <center>
-        <img id="img4" src="img/4/1.jpg">
         <br>
-        <h3 class="form-signin-heading">Mot à découvrir par <?php echo $nomjoueur4 ?>  : <?php echo $motjoueur4 ?></h3>
+        <h3 class="form-signin-heading" id="motPlayer4"></h3>
         <br>
         </center> 
       </div>
@@ -123,14 +114,17 @@
 <script>
 var currentPlayer=1;
 var idGame=0;
-var mots=new Array(5);
-for (var i = 0; i < 5; i++)
+var mots=new Array(4);
+for (var i = 0; i < 4; i++)
 {
  mots[i] = new Array(5);
 }
 //On affecte une valeur de la même façon qu'on l'affiche
 mots[0][0] = "Paul";
-mots[1][0] = "Pierrel";
+mots[1][0] = "Pierre";
+mots[2][0] = "Jacques";
+mots[3][0] = "Marcel";
+
 
 function submitSelectGame(){
   idGame=$("#idGame").text; 
@@ -141,46 +135,24 @@ function submitSelectGame(){
   }  
 }
 
-
-$("#connectButton").click(
-	function(){
-    $("#formu").hide();
-    $("#divCourant").show();
-    if ($("#joueur").val()==1){
-      $("#player").text("Vous êtes dans l'équipe Avelin");
-    }
-    if ($("#joueur").val()==2){
-      $("#player").text("Vous êtes dans l'équipe Emmerin");
-    }
-    if ($("#joueur").val()==3){
-      $("#player").text("Vous êtes dans l'équipe Lomme");
-    }
-        if ($("#joueur").val()==4){
-      $("#player").text("Vous êtes dans l'équipe Noyelles");
-    }
-    $("#imgplayer").attr('src','img/'+ $("#joueur").val()+'/1.jpg');    
-    if ($("#joueur").val()!="1"){
-      $("#div1").show();
-    }
-    if ($("#joueur").val()!="2"){
-      $("#div2").show();
-    }
-    if ($("#joueur").val()!="3"){
-      $("#div3").show();
-    }
-    if ($("#joueur").val()!="4"){
-      $("#div4").show();
-    }
-
-
-  }  
-);
-
-
 function selectPlayer(position) {
-  $("#player").text("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
-  $("#formSelectGame").hide();
+  $("#currentPlayer").text("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+  $("#divSelectGame").hide();
+  
+  $("#motPlayer1").text("Le mot de l'équipe d'Avelin est :"+mots[0][idGame]);
+  $("#motPlayer2").text("Le mot de l'équipe d'Avelin est :"+mots[1][idGame]);
+  $("#motPlayer3").text("Le mot de l'équipe d'Avelin est :"+mots[2][idGame]);
+  $("#motPlayer4").text("Le mot de l'équipe d'Avelin est :"+mots[3][idGame]);
   $("#divCurrentPlayer").show();
+  $("#divPlayer1").show();
+  $("#divPlayer2").show();
+  $("#divPlayer3").show();
+  $("#divPlayer4").show();
+    
 }
+
+
+
+
 </script>
 </html>
