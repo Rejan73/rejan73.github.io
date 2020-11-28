@@ -119,7 +119,7 @@ for (var i = 0; i < 4; i++)
 {
  mots[i] = new Array(5);
 }
-//On affecte une valeur de la même façon qu'on l'affiche
+
 mots[0][0] = "Paul";
 mots[1][0] = "Pierre";
 mots[2][0] = "Jacques";
@@ -127,7 +127,6 @@ mots[3][0] = "Marcel";
 
 
 function submitSelectGame(){
-  idGame=$("#idGame").text; 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(selectPlayer);
   } else { 
@@ -136,21 +135,54 @@ function submitSelectGame(){
 }
 
 function selectPlayer(position) {
-  $("#currentPlayer").text("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+  //La latitude de la ville de Lomme est 50.65 et la longitude de la ville de Lomme est 2.9833.
+  //La latitude de la ville de Avelin est 50.5333 et la longitude de la ville de Avelin est 3.0833.
+  //La latitude de la ville de Noyelles-lès-Seclin est 50.5833 et la longitude de la ville de Noyelles-lès-Seclin est 3.0167.
+  //La latitude de la ville de Emmerin est 50.6 et la longitude de la ville de Emmerin est 3
+  var deltaAvelin = Math.abs(position.coords.latitude - 50.5333 + position.coords.longitude - 3.0833);
+  var deltaEmmerin = Math.abs(position.coords.latitude - 50.6 + position.coords.longitude - 3);
+  var deltaLomme = Math.abs(position.coords.latitude - 50.65 + position.coords.longitude - 2.9833);
+  var deltaNoyelles = Math.abs(position.coords.latitude - 50.5833 + position.coords.longitude - 3.0167);
+  var deltaMin = Math.min(deltaAvelin,deltaEmmerin,deltaLomme,deltaNoyelles);
+  
   $("#divSelectGame").hide();
   
-  $("#motPlayer1").text("Le mot de l'équipe d'Avelin est :"+mots[0][idGame]);
-  $("#motPlayer2").text("Le mot de l'équipe d'Avelin est :"+mots[1][idGame]);
-  $("#motPlayer3").text("Le mot de l'équipe d'Avelin est :"+mots[2][idGame]);
-  $("#motPlayer4").text("Le mot de l'équipe d'Avelin est :"+mots[3][idGame]);
-  $("#divCurrentPlayer").show();
-  $("#divPlayer1").show();
-  $("#divPlayer2").show();
-  $("#divPlayer3").show();
-  $("#divPlayer4").show();
-    
+  $("#motPlayer1").text("Le mot de l'équipe d'Avelin est :" + mots[0][$("#idGame").val()]);
+  $("#motPlayer2").text("Le mot de l'équipe d'Emerin est :" + mots[1][$("#idGame").val()]);
+  $("#motPlayer3").text("Le mot de l'équipe de Lomme est :" + mots[2][$("#idGame").val()]);
+  $("#motPlayer4").text("Le mot de l'équipe de Noyelles est :" + mots[3][$("#idGame").val()]);
+  
+  if (deltaMin == deltaAvelin){
+    $("#currentPlayer").text("Vous êtes dans l'equipe d'Avelin");
+    $("#divCurrentPlayer").show();
+    $("#divPlayer2").show();
+    $("#divPlayer3").show();
+    $("#divPlayer4").show();
+  }
+  if (deltaMin == deltaEmmerin){
+    $("#currentPlayer").text("Vous êtes dans l'equipe d'Emmerin");
+    $("#divCurrentPlayer").show();
+    $("#divPlayer1").show();
+    $("#divPlayer3").show();
+    $("#divPlayer4").show();
+  }
+  if (deltaMin == deltaLomme){
+    $("#currentPlayer").text("Vous êtes dans l'equipe de Lomme");
+    $("#divCurrentPlayer").show();
+    $("#divPlayer1").show();
+    $("#divPlayer2").show();
+    $("#divPlayer4").show();
+  }
+  if (deltaMin == deltaNoyelles){
+    $("#currentPlayer").text("Vous êtes dans l'equipe de Noyelles");
+    $("#divCurrentPlayer").show();
+    $("#divPlayer1").show();
+    $("#divPlayer3").show();
+    $("#divPlayer4").show();
+  }
+  
+ 
 }
-
 
 
 
