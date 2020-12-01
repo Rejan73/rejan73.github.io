@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
@@ -167,7 +169,7 @@ function selectPlayer(position) {
   //La latitude de la ville de Emmerin est 50.6 et la longitude de la ville de Emmerin est 3
   var deltaAvelin = Math.abs(position.coords.latitude - 50.5333) + Math.abs(position.coords.longitude - 3.0833);
   var deltaEmmerin = Math.abs(position.coords.latitude - 50.6) + Math.abs(position.coords.longitude - 3);
-  var deltaLomme = Math.abs(position.coords.latitude - 50.65) + Math.abs(position.coords.longitude - 2.9833);
+  var deltaLomme = Math.abs(position.coords.latitude - 50.6299923) + Math.abs(position.coords.longitude - 3.0055568);
   var deltaNoyelles = Math.abs(position.coords.latitude - 50.5833) + Math.abs(position.coords.longitude - 3.0167);
   var deltaMin = Math.min(deltaAvelin,deltaEmmerin,deltaLomme,deltaNoyelles);
   
