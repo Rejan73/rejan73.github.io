@@ -152,7 +152,7 @@ div.textBas {
 
 <div class="calendrier_html">
 <div class="fond">
-  <img class="back" src="img/avent.png" class="responsive" style="max-width:800px;" alt="">
+  <img class="back" src="avent.png" class="responsive" style="max-width:800px;" alt="">
 </div>
 <div class="jour1">
  <a href="" onclick="gopage(1);return false;" style="display:block;width:100%;height:100%;" >&nbsp;</a>
@@ -233,7 +233,7 @@ div.textBas {
 function gopage(num){
   var d = new Date();
   if (num <= d.getDate()){
-    window.location = num+".html";
+    window.location = num+"/cadeau.html";
   }else {
     window.location = "nonnon.html";
   }
