@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<style>
+
+img.back {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  max-width:600px;
+  max-height:550px;
+  width: auto;
+  height: auto;
+}
+
+#gift {
+  position: absolute;
+  left: 150px;
+  top: 20px;
+  z-index: 1;
+  text-align: center;
+}
+
+#imgGift {
+  max-width:600px;
+  max-height:500px;
+  width: auto;
+  height: 500px;
+}
+
+.cadeau {
+	position:absolute;
+	width:100px;
+	height:100px;
+	border:1px solid #FFFFFF;
+	cursor: pointer;
+    font-family: fantasy,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #FFFFFF;
+	text-indent:10px;
+	animation-name: example;
+    animation-duration: 5s;
+	font-size: 40px;
+}
+.cadeau:hover {
+	color: yellow;
+	border:3px solid yellow;
+}
+
+
+@keyframes example {
+  0%   {color: red;}
+  25%  {color: yellow;}
+  50%  {color: blue;}
+  100% {color: green;}
+}
+
+div.textBas {
+  max-width:800px;
+  position:  absolute;
+  left: 10px;
+  top: 550px;
+  font-family: fantasy,"Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  font-size: 40px;
+}
+
+</style>
+</head>
+<body style="background-color:#000000;" onload="init()">
+
+<div class="calendrier_html">
+<div class="fond">
+  <img class="back" src="img/back.jpg" style="max-width:800px;" alt="">
+</div>
+
+<div id="0" class="cadeau" onclick="gopage(0);">1</div>
+<div id="1" class="cadeau"onclick="gopage(1);">2</div>
+<div id="2" class="cadeau" onclick="gopage(2);">3</div>
+<div id="3" class="cadeau" onclick="gopage(3);">4</div>
+<div id="4" class="cadeau" onclick="gopage(4);">5</div>
+<div id="5" class="cadeau" onclick="gopage(5);">6</div>
+<div id="6" class="cadeau" onclick="gopage(6);">7</div>
+<div id="7" class="cadeau" onclick="gopage(7);">8</div>
+<div id="8" class="cadeau" onclick="gopage(8);">9</div>
+<div id="9" class="cadeau" onclick="gopage(9);">10</div>
+<div id="10" class="cadeau" onclick="gopage(10);">11</div>
+<div id="11" class="cadeau" onclick="gopage(11);">12</div>
+<div id="12" class="cadeau" onclick="gopage(12);">13</div>
+<div id="13" class="cadeau" onclick="gopage(13);">14</div>
+<div id="14" class="cadeau" onclick="gopage(14);">15</div>
+<div id="15" class="cadeau" onclick="gopage(15);">16</div>
+<div id="16" class="cadeau" onclick="gopage(16);">17</div>
+<div id="17" class="cadeau" onclick="gopage(17);">18</div>
+<div id="18" class="cadeau" onclick="gopage(18);">19</div>
+<div id="19" class="cadeau" onclick="gopage(19);">20</div>
+<div id="20" class="cadeau" onclick="gopage(20);">21</div>
+<div id="21" class="cadeau" onclick="gopage(21);">22</div>
+<div id="22" class="cadeau" onclick="gopage(22);">23</div>
+<div id="23" class="cadeau" onclick="gopage(23);">24</div>
+
+<div id="gift" style="display:none"><img id="imgGift" alt="" onclick="hideGift()"></div>
+
+<div id="enigme" class="textBas" style="display:none" ></div>
+<div id="enigmeRep" class="textBas" style="display:none" ></div>
+
+<script>
+/* Position des cases sur l'image de fond*/
+//left, top, image
+var caseCadeau =[
+["270px"  , "151px"  , "0.gif"],
+["525px" , "151px" , "1.gif"],
+["403px" , "25px" , "2.gif"],
+["650px" , "151px" , "3.gif"],
+["396px" , "151px"  , "4.gif"],
+["525px" , "400px" , "5.gif"],
+["25px"  , "151px" , "6.gif"],
+["25px"  , "276px" , "7.gif"],
+["270px" , "400px" , "8.gif"],
+["525px" , "276px" , "9.gif"],
+["396px" , "276px"  , "10.gif"],
+["650px" , "25px" , "11.gif"],
+["275px" , "25px" , "12.gif"],
+["150px" , "400px" , "13.gif"],
+["150px" , "151px" , "14.gif"],
+["650px" , "276px" , "15.gif"],
+["25px"  , "25px" , "16.gif"],
+["650px" , "400px" , "17.gif"],
+["25px"  , "400px" , "18.gif"],
+["150px" , "276px" , "19.gif"],
+["396px" , "400px" , "20.gif"],
+["150px" , "25px" , "21.gif"],
+["525px" , "25px" , "22.gif"],
+["270px" , "276px"  , "23.gif"]
+];
+
+var enigmes=[
+["Qu’est ce que tes amis et ta famille utilisent plus souvent que toi,\n bien que cette chose t’appartienne ?","Ton prénom"],
+["Qu’est-ce qui se trouve à la première place en Autriche à la troisième place en France et à la cinquième place en Bulgarie ?","Le A"],
+["Comment une personne peut-elle se trouver chez elle sans tête ?","En sortant sa tête par la fenêtre"],
+["Qu’est-ce qui ne rentrera jamais, même dans la plus grande des casseroles ?","Le couvercle de cette même casserole"],
+["Quelle est la lettre la plus tranchante ?","La H"],
+["Qui a deux branches, mais pas de feuilles ?","Les lunettes"],
+["Qui a deux aiguilles, mais ne pique pas ?","Une montre"],
+["Qu’est-ce qu’on peut écraser avec le pied droit mais pas avec le pied gauche ?","Le pied gauche"],
+["Je grossis et je ne prends, pourtant, pas de poids. Qui suis-je","La loupe"],
+["Trouve l'errreur : 1 2 3 4 5 6 7 8 9 ","erRreur"],
+["En quelle année Noël et le jour de l’An tombent-ils la même année ?","Tous les ans, chaque année, il y a un 1er janvier un 25 décembre."],
+["Pourquoi le père noël a-t-il une barbe blanche ?","Pour ne pas être confondu avec le Petit Chaperon Rouge."],
+["Pourquoi le Père Noël porte-t-il des bretelles noires ?","Pour porter son pantalon, voyons."],
+["Comment appelle-t-on un chat tombé dans un pot de peinture le jour de Noël ?","Un chat peint de Noël."],
+["Monsieur et Madame Duciel ont 5 enfants, comment s’appellent-ils ?","Betty Baba Noel Candide et Sandra Duciel (petit papa Noël quand il descendra du ciel)."],
+["Qu’ est-ce qui a 34 jambes, 9 têtes et 2 bras?","Le Père Noël et ses huit rennes."],
+["Comment fait-on entrer 2 Pères Noël dans un réfrigérateur ?","Impossible, il n’existe qu’un Père Noël."],
+["À quoi rêvent les dindes à Noël ?","Fêter le Nouvel An."],
+["Tu connais la blague de Noël ?","Elle sent le sapin."],
+["Quelle est la différence entre un sapin et toi ?","Le sapin c’est un conifère et toi t’es con mais on peut rien y faire."],
+["Père Noël = 4, Lutin = 2, Cadeau=4, Renne = … ?","2 (c'est le nombre de voyelles)"],
+["Qu'est-ce qui commence la nuit et termine le matin ?","le N"],
+["Qu'est-ce qui doit être cassé pour être utilisé ?","l'oeuf"],
+["Que dit un sapin de Noël qui arrive en retard le soir du réveillon ?","Je vais encore me faire enguirlander…"]
+]
+
+function init(){
+ for (let i = 0; i < caseCadeau.length; i++) {
+   var d = document.getElementById(i);
+   d.style.left=caseCadeau[i][0];
+   d.style.top=caseCadeau[i][1];
+ } 
+}
+
+function gopage(num){
+  var d = new Date();
+  srcImg="img/noway.gif";
+  //Si la case demandée est inférieure à la date du jour, on affiche la bonne image sinon noway.gif est affiché
+  if (num+1 <= d.getDate()){
+	srcImg="img/"+caseCadeau[num][2];
+  }
+   
+  var x = document.getElementById("gift");
+  var divEnigme = document.getElementById("enigme");
+  divEnigme.textContent=enigmes[num][0];
+  var divEnigmeRep = document.getElementById("enigmeRep");
+  divEnigmeRep.textContent=enigmes[num][1];
+  if (x.style.display === "none") {
+    document.getElementById("enigmeRep").style.display = "none";
+    y = document.getElementById("imgGift");
+	y.src=srcImg;
+	y.style.visibility='visible';
+	x.style.display = "block";
+	divEnigme.style.display = "block";
+  } else {
+    x.style.display = "none";
+	document.getElementById("enigme").style.display = "none";
+  }
+}
+
+function hideGift(){
+  document.getElementById("imgGift").style.visibility='hidden';
+  document.getElementById("gift").style.display = "none";
+  document.getElementById("enigme").style.display = "none";
+  var divEnigme = document.getElementById("enigmeRep");
+  divEnigme.style.display = "block";
+  divEnigme.style.visibility='visible';
+}
+</script>
+</body>
+</html>
